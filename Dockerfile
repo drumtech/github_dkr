@@ -8,8 +8,9 @@ RUN go get "github.com/caarlos0/env";\
     go get "github.com/prometheus/client_golang/prometheus";\
     go get "github.com/prometheus/client_golang/prometheus/promhttp";\
     go get "github.com/lib/pq";\
-    go build main.go
+    go build main.go;\
+    go build -o app
 
 FROM alpine:3.10.3
-COPY --from=build /app/main .
-CMD ["./main"]
+COPY --from=build /app/app .
+CMD ["./app"]
